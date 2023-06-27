@@ -1,12 +1,11 @@
-
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+const connect = async () => {
+    await mongoose.connect(
+        `mongodb+srv://${process.env.MONGO_LOGIN}:${process.env.MONGO_PASSWORD}@cluster0.tpw5b43.mongodb.net/`
+    );
 
-
-mongoose.connection.once('open', ()=> {
     console.log('connected to mongo');
-});
+};
+
+module.exports = connect;
